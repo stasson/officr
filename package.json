@@ -1,0 +1,50 @@
+{
+  "name": "officr",
+  "publish": false,
+  "version": "1.0.0",
+  "description": "lightweight common utils",
+  "main": "index.js",
+  "scripts": {
+    "build": "lerna run build",
+    "clean": "lerna run clean",
+    "commit": "standard-commit",
+    "format": "lerna exec \"prettier --write \"**/*.ts\"\"",
+    "prepare": "lerna bootstrap",
+    "test": "lerna run test --stream",
+    "release": "lerna publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stasson/officr.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stasson/officr/issues"
+  },
+  "homepage": "https://github.com/stasson/officr#readme",
+  "gitHooks": {
+    "commit-msg": "standard-commithook"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "proseWrap": "always"
+  },
+  "standard-commit": {
+    "promptScope": "enforce",
+    "scopes": "packages"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.22",
+    "@types/node": "^10.17.5",
+    "jest": "^24.9.0",
+    "lerna": "^3.18.4",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "standard-commit": "^3.3.0",
+    "ts-jest": "^24.1.0",
+    "typescript": "^3.7.2",
+    "yorkie": "^2.0.0"
+  }
+}
