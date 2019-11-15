@@ -1,11 +1,11 @@
-import { format } from 'util'
 import EventEmitter from 'events'
+import { format } from 'util'
 import logColors from './log-colors'
 import logSymbols from './log-symbols'
 
 type LogType = 'debug' | 'log' | 'info' | 'warning' | 'error' | 'success'
 type LogMethod = 'debug' | 'log' | 'info' | 'warn' | 'error' | 'success'
-type LogFunction = { (...args: any): void }
+type LogFunction = (...args: any) => void
 
 const isDebug = !!process.env.DEBUG
 
@@ -48,32 +48,31 @@ export class Logger extends EventEmitter
     /* tslint:enable:no-console */
   }
 
-
-  emit(level: LogType, ...args: any[]) {
+  public emit(level: LogType, ...args: any[]) {
     return super.emit(level, ...args)
   }
 
-  debug(...args: any) {
+  public debug(...args: any) {
     this.emit('debug', ...args)
   }
 
-  log(...args: any) {
+  public log(...args: any) {
     this.emit('log', ...args)
   }
 
-  info(...args: any) {
+  public info(...args: any) {
     this.emit('info', ...args)
   }
 
-  warn(...args: any) {
+  public warn(...args: any) {
     this.emit('warning', ...args)
   }
 
-  error(...args: any) {
+  public error(...args: any) {
     this.emit('error', ...args)
   }
 
-  success(...args: any) {
+  public success(...args: any) {
     this.emit('success', ...args)
   }
 }
