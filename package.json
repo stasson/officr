@@ -11,6 +11,7 @@
     "format": "lerna exec \"prettier --write \"**/*.ts\"\"",
     "prepare": "lerna bootstrap",
     "test": "lerna run test --stream",
+    "prerelease": "lerna run build && lerna run test",
     "release": "lerna publish"
   },
   "repository": {

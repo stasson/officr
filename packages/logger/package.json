@@ -1,0 +1,35 @@
+{
+  "name": "@officr/logger",
+  "version": "1.0.0",
+  "description": "logger utils",
+  "keywords": [
+    "logger",
+    "utils"
+  ],
+  "author": "stasson <sebastien.tasson@gmail.com>",
+  "homepage": "https://github.com/stasson/officr/tree/master/packages/logger#readme",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stasson/officr.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf lib",
+    "prepack": "rimraf lib && tsc",
+    "test": "jest"
+  },
+  "bugs": {
+    "url": "https://github.com/stasson/officr/issues"
+  },
+  "dependencies": {
+    "ansi-colors": "^4.1.1"
+  }
+}
