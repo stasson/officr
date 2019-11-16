@@ -1,5 +1,3 @@
-'use strict'
-
 import { path } from '../src'
 import { join } from '../src/path'
 

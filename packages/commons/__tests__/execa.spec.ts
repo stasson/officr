@@ -1,13 +1,11 @@
-'use strict'
-
-import { execa } from '../src'
-import { command } from '../src/execa'
+import { exec } from '../src'
+import { command } from '../src/exec'
 
 describe('commons', () => {
   it('needs tests', () => {
-    expect(execa.command).toEqual(command)
+    expect(exec.command).toEqual(command)
 
-    expect(Object.keys(execa)).toMatchInlineSnapshot(`
+    expect(Object.keys(exec)).toMatchInlineSnapshot(`
       Array [
         "sync",
         "command",

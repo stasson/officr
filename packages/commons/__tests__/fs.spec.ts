@@ -1,5 +1,3 @@
-'use strict'
-
 import { fs } from '../src'
 import { read } from '../src/fs'
 

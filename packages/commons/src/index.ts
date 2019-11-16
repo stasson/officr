@@ -1,3 +1,13 @@
-export { default as fs } from './fs'
-export { default as path } from './path'
-export { default as execa } from './execa'
+import exec from 'execa'
+import fs from 'fs-extra'
+import _ from 'lodash'
+import path from 'upath'
+
+export { _, fs, path, exec }
+
+export default {
+  _,
+  exec,
+  fs,
+  path
+}

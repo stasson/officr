@@ -29,8 +29,10 @@
   },
   "dependencies": {
     "@types/fs-extra": "^8.0.1",
+    "@types/lodash": "^4.14.148",
     "execa": "^3.3.0",
     "fs-extra": "^8.1.0",
+    "lodash": "^4.17.15",
     "upath": "^1.2.0"
   }
 }
