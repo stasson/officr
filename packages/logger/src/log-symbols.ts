@@ -1,20 +1,21 @@
-import colors from './log-colors'
+import { symbols } from 'ansi-colors'
+import logColors from './log-colors'
 
-const logSymbols =
-  process.platform !== 'win32' ||
-  process.env.CI ||
-  process.env.TERM === 'xterm-256color'
-    ? {
-        error: colors.error('✖'),
-        info: colors.info('ℹ'),
-        success: colors.success('✔'),
-        warning: colors.warning('⚠')
-      }
-    : {
-        error: colors.error('×'),
-        info: colors.info('i'),
-        success: colors.success('√'),
-        warning: colors.warning('‼')
-      }
+const logSymbols = {
+  colored: {
+    debug: logColors.debug('D'),
+    error: logColors.error(symbols.cross),
+    info: logColors.info(symbols.info),
+    log: logColors.log(symbols.pointerSmall),
+    success: logColors.success(symbols.check),
+    warning: logColors.warning(symbols.warning)
+  },
+  debug: 'D',
+  error: symbols.cross,
+  info: symbols.info,
+  log: symbols.pointerSmall,
+  success: symbols.check,
+  warning: symbols.warning
+}
 
 export default logSymbols

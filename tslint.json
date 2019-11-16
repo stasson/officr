@@ -2,5 +2,8 @@
   "extends": ["tslint:recommended", "tslint-config-prettier"],
   "rules": {
     "ordered-imports": false
+  },
+  "linterOptions": {
+    "exclude": ["node_modules/**"]
   }
 }

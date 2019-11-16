@@ -1,55 +1,138 @@
 import EventEmitter from 'events'
-import { format } from 'util'
+import util from 'util'
 import logColors from './log-colors'
 import logSymbols from './log-symbols'
+import { Writable } from 'stream'
+import { PathLike, createWriteStream } from 'fs'
+import { EOL } from 'os'
 
 type LogType = 'debug' | 'log' | 'info' | 'warning' | 'error' | 'success'
 type LogMethod = 'debug' | 'log' | 'info' | 'warn' | 'error' | 'success'
-type LogFunction = (...args: any) => void
+type LogFunction = (...args: any[]) => void
+type LogFormatFunction = (logType: LogType, ...args: any[]) => string
 
 const isDebug = !!process.env.DEBUG
 
+const formatDefault = (logType: LogType, ...args: any[]) => {
+  return util.format(logSymbols[logType], ...args)
+}
+
 export class Logger extends EventEmitter
   implements Record<LogMethod, LogFunction> {
+  private console = true
+  private logStats = false
+  private exitCode = false
+  private ended = false
+  private counters = {
+    errors: 0,
+    success: 0,
+    warnings: 0
+  }
+
   constructor() {
     super()
 
-    /* tslint:disable:no-console */
+    process.on('beforeExit', () => {
+      if (!this.ended) {
+        super.emit('end')
+      }
+    })
+
+    this.on('end', () => {
+      if (this.exitCode) {
+        process.exitCode = this.stats.errors
+      }
+      if (this.logStats) {
+        const { errors, warnings } = this.counters
+        const stats = `${errors} errors, ${warnings} warnings`
+        if (errors) {
+          this.error(logColors.error('error:'), stats)
+        } else if (warnings) {
+          this.warn(logColors.warning('warning:'), stats)
+        } else {
+          this.error(logColors.success('success:'), stats)
+        }
+      }
+      this.ended = true
+    })
+
+    this.on('data', (logType, ...args) => {
+      super.emit(logType, ...args)
+    })
+
     if (isDebug) {
       this.on('debug', (...args) => {
-        const message = format('DEBUG:\n', ...args)
-        console.debug(logColors.debug(message))
+        if (this.console) {
+          process.stderr.write(
+            logColors.debug(util.format(logSymbols.debug, ...args, EOL))
+          )
+        }
       })
     }
 
     this.on('log', (...args) => {
-      console.log(...args)
+      if (this.console) {
+        process.stdout.write(
+          logColors.log(util.format(logSymbols.log, ...args, EOL))
+        )
+      }
     })
 
-    const lbInfo = logColors.info('info:'.padEnd(8))
     this.on('info', (...args) => {
-      console.info(logSymbols.info, lbInfo, ...args)
+      if (this.console) {
+        process.stdout.write(util.format(logSymbols.colored.info, ...args, EOL))
+      }
     })
 
-    const lbWarn = logColors.warning('warning:'.padEnd(8))
     this.on('warning', (...args) => {
-      console.warn(logSymbols.warning, lbWarn, ...args)
+      this.counters.warnings++
+      if (this.console) {
+        process.stdout.write(
+          util.format(logSymbols.colored.warning, ...args, EOL)
+        )
+      }
     })
 
-    const lbError = logColors.error('error:'.padEnd(8))
     this.on('error', (...args) => {
-      console.error(logSymbols.error, lbError, ...args)
+      this.counters.errors++
+      if (this.console) {
+        process.stdout.write(
+          util.format(logSymbols.colored.error, ...args, EOL)
+        )
+      }
     })
 
-    const lbSuccess = logColors.success('success:'.padEnd(8))
     this.on('success', (...args) => {
-      console.info(logSymbols.success, lbSuccess, ...args)
+      this.counters.success++
+      if (this.console) {
+        process.stdout.write(util.format(logSymbols.success, ...args, EOL))
+      }
     })
-    /* tslint:enable:no-console */
   }
 
-  public emit(level: LogType, ...args: any[]) {
-    return super.emit(level, ...args)
+  public configure(options?: {
+    console?: boolean
+    logStats?: boolean
+    exitCode?: boolean
+  }) {
+    const { console, logStats, exitCode } = options || {}
+    this.console = console || true
+    this.logStats = logStats || false
+    this.exitCode = exitCode || false
+  }
+
+  public get stats() {
+    const { counters } = this
+    const total = counters.errors + counters.warnings + counters.success
+    return { total, ...counters }
+  }
+
+  public end() {
+    super.emit('end')
+  }
+
+  public emit(logType: LogType, ...args: any[]) {
+    return !this.ended && super.emit('data', logType, ...args)
   }
 
   public debug(...args: any) {
@@ -74,6 +157,33 @@ export class Logger extends EventEmitter
 
   public success(...args: any) {
     this.emit('success', ...args)
+  }
+
+  public pipe(writable: Writable, format: LogFormatFunction = formatDefault) {
+    this.on('data', (logType: LogType, ...args: any[]) => {
+      writable.write(format(logType, ...args) + EOL)
+    })
+
+    this.on('end', () => writable.end())
+  }
+
+  public save(
+    path: string,
+    options?:
+      | string
+      | {
+          flags?: string
+          encoding?: string
+          fd?: number
+          mode?: number
+          autoClose?: boolean
+          start?: number
+          highWaterMark?: number
+        },
+    format?: LogFormatFunction
+  ) {
+    const writable = createWriteStream(path, options || undefined)
+    this.pipe(writable, format)
   }
 }
 
