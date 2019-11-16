@@ -27,6 +27,9 @@
     "url": "https://github.com/stasson/officr/issues"
   },
   "homepage": "https://github.com/stasson/officr#readme",
+  "engines": {
+    "node": "10.x"
+  },
   "gitHooks": {
     "pre-commit": "lint-staged",
     "commit-msg": "standard-commithook"
@@ -58,6 +61,5 @@
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^3.7.2",
     "yorkie": "^2.0.0"
-  },
-  "dependencies": {}
+  }
 }
