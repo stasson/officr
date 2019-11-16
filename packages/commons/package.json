@@ -4,7 +4,7 @@
   "description": "commons packages",
   "author": "stasson <sebastien.tasson@gmail.com>",
   "homepage": "https://github.com/stasson/officr/tree/master/packages/commons#readme",
-  "license": "ISC",
+  "license": "MIT",
   "main": "lib/commons.js",
   "directories": {
     "lib": "lib",
@@ -18,9 +18,18 @@
     "url": "git+https://github.com/stasson/officr.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "tsc",
+    "clean": "rimraf lib",
+    "prepack": "rimraf lib && tsc",
+    "test": "jest"
   },
   "bugs": {
     "url": "https://github.com/stasson/officr/issues"
+  },
+  "dependencies": {
+    "@types/fs-extra": "^8.0.1",
+    "execa": "^3.3.0",
+    "fs-extra": "^8.1.0",
+    "upath": "^1.2.0"
   }
 }
