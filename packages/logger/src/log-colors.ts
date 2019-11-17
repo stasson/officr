@@ -1,6 +1,6 @@
 import colors from 'ansi-colors'
 
-const logColors = {
+export default {
   debug: colors.dim,
   error: colors.red,
   info: colors.blue,
@@ -8,5 +8,3 @@ const logColors = {
   success: colors.green,
   warning: colors.yellow
 }
-
-export default logColors
