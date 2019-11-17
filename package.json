@@ -7,6 +7,7 @@
   "scripts": {
     "prepare": "lerna bootstrap",
     "commit": "standard-commit",
+    "clean": "lerna run clean --stream",
     "build": "lerna run build --stream",
     "fix": "run-s fix:*",
     "format": "prettier --write \"packages/**/{src,__tests__}/*.{js,ts,md,json}\"",
@@ -14,7 +15,7 @@
     "test": "run-s test:*",
     "test:jest": "jest",
     "test:tslint": "tslint \"packages/**/src/**/*.ts\"",
-    "prerelease": "lerna run build && lerna run test",
+    "prerelease": "run-s clean && run-s build && run-s test",
     "release": "lerna publish"
   },
   "repository": {
@@ -51,7 +52,6 @@
     "@types/node": "^10.17.5",
     "jest": "^24.9.0",
     "lerna": "^3.18.4",
-    "lint-staged": "^10.0.0-beta.3",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",

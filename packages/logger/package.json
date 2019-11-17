@@ -32,5 +32,8 @@
   },
   "dependencies": {
     "ansi-colors": "^4.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
