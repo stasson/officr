@@ -1,8 +1,9 @@
 import { _ } from '../src'
-import { snakeCase } from '../src/lodash'
+import lodash, { snakeCase } from '../src/lodash'
 
 describe('commons', () => {
   it('needs tests', () => {
+    expect(_).toEqual(lodash)
     expect(snakeCase).toEqual(_.snakeCase)
 
     expect(Object.keys(_)).toMatchInlineSnapshot(`

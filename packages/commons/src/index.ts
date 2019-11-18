@@ -1,13 +1,6 @@
-import exec from 'execa'
-import fs from 'fs-extra'
-import _ from 'lodash'
-import path from 'upath'
+import exec = require('execa')
+import fs = require('fs-extra')
+import path = require('upath')
+import _ = require('lodash')
 
 export { _, fs, path, exec }
-
-export default {
-  _,
-  exec,
-  fs,
-  path
-}

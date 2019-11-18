@@ -12,7 +12,7 @@ describe('logger', () => {
     logger.error('error')
     logger.success('success')
 
-    expect(logger.getStats()).toMatchInlineSnapshot(`
+    expect(logger.stats).toMatchInlineSnapshot(`
       Object {
         "errors": 1,
         "success": 1,
