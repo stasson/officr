@@ -38,5 +38,9 @@
   },
   "engines": {
     "node": ">=10"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
   }
 }
