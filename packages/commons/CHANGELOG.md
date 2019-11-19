@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/stasson/officr/compare/@officr/commons@1.1.0...@officr/commons@1.2.0) (2019-11-19)
+
+### Features
+
+- **commons:** remove execa from commands
+  ([f783c19](https://github.com/stasson/officr/commit/f783c19a82b9e2e23b472517fb48902e2e6db0a1))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.1.0 (2019-11-17)
 
 ### Bug Fixes

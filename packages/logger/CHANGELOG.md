@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/stasson/officr/compare/@officr/logger@1.1.0...@officr/logger@1.2.0) (2019-11-19)
+
+### Features
+
+- **logger:** export logger as commonjs module
+  ([d6f1295](https://github.com/stasson/officr/commit/d6f1295018a55661754bf16b3c07ac47e105ff3c))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # 1.1.0 (2019-11-17)
 
 ### Bug Fixes
