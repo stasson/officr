@@ -5,21 +5,19 @@
   "author": "stasson <sebastien.tasson@gmail.com>",
   "homepage": "https://github.com/stasson/officr/tree/master/packages/commons#readme",
   "license": "MIT",
-  "types": "index.d.ts",
-  "main": "index.js",
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
   "files": [
-    "/*.js",
-    "/*.d.ts",
-    "/*.map"
+    "lib"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stasson/officr.git"
   },
   "scripts": {
-    "build": "tsc",
-    "clean": "npx rimraf ./*.js ./*.d.ts ./*.map",
-    "prepack": "run-s clean && run-s build",
     "test": "jest"
   },
   "bugs": {
@@ -28,8 +26,10 @@
   "dependencies": {
     "@types/fs-extra": "^8.0.1",
     "@types/lodash": "^4.14.148",
+    "date-fns": "^2.8.0",
     "execa": "^3.3.0",
     "fs-extra": "^8.1.0",
+    "import-lazy": "^4.0.0",
     "lodash": "^4.17.15",
     "upath": "^1.2.0"
   },
