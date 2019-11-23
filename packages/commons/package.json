@@ -24,12 +24,15 @@
     "url": "https://github.com/stasson/officr/issues"
   },
   "dependencies": {
+    "@officr/logger": "^1.2.0",
     "@types/fs-extra": "^8.0.1",
     "@types/lodash": "^4.14.148",
     "date-fns": "^2.8.0",
     "execa": "^3.3.0",
     "fs-extra": "^8.1.0",
+    "got": "^9.6.0",
     "import-lazy": "^4.0.0",
+    "js-yaml": "^3.13.1",
     "lodash": "^4.17.15",
     "upath": "^1.2.0"
   },

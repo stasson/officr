@@ -1,4 +1,4 @@
-import { _, fs, path, exec, date } from '../lib'
+import { _, fs, path, exec, date, yaml, request } from '../lib'
 
 describe('commons', () => {
   it('lodash', () => {
@@ -21,5 +21,8 @@ describe('commons', () => {
     expect(date.format(new Date(2014, 1, 11), 'yyyy-MM-dd')).toEqual(
       '2014-02-11'
     )
+  })
+  it('yaml', () => {
+    expect(yaml.load('123')).toEqual(123)
   })
 })
