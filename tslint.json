@@ -3,7 +3,8 @@
   "rules": {
     "ordered-imports": false,
     "object-literal-sort-keys": false,
-    "no-shadowed-variable": false
+    "no-shadowed-variable": false,
+    "interface-name": false
   },
   "linterOptions": {
     "exclude": ["node_modules/**"]
