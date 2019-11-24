@@ -1,0 +1,49 @@
+{
+  "name": "@officr/jest-utils",
+  "version": "1.2.0",
+  "description": "jest utils stdin",
+  "keywords": [
+    "jest",
+    "utils"
+  ],
+  "author": "stasson <sebastien.tasson@gmail.com>",
+  "homepage": "https://github.com/stasson/officr/tree/master/packages/logger#readme",
+  "license": "MIT",
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stasson/officr.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf lib",
+    "prepack": "rimraf lib && tsc",
+    "test": "jest"
+  },
+  "bugs": {
+    "url": "https://github.com/stasson/officr/issues"
+  },
+  "dependencies": {
+    "mock-stdin": "^1.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "enquirer": "^2.3.2"
+  }
+}
