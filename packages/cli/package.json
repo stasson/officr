@@ -1,0 +1,52 @@
+{
+  "name": "@officr/cli",
+  "version": "1.2.0",
+  "description": "cli utils",
+  "keywords": [
+    "cli",
+    "utils"
+  ],
+  "author": "stasson <sebastien.tasson@gmail.com>",
+  "homepage": "https://github.com/stasson/officr/tree/master/packages/logger#readme",
+  "license": "MIT",
+  "types": "lib/index.d.ts",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stasson/officr.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "clean": "rimraf lib",
+    "prepack": "rimraf lib && tsc",
+    "test": "jest"
+  },
+  "bugs": {
+    "url": "https://github.com/stasson/officr/issues"
+  },
+  "dependencies": {
+    "@officr/commons": "^1.2.0",
+    "@officr/logger": "^1.2.0",
+    "@officr/prompt": "^1.2.0",
+    "@types/loud-rejection": "^2.0.0",
+    "ansi-colors": "^4.1.1",
+    "cac": "^6.5.3",
+    "loud-rejection": "^2.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  }
+}
