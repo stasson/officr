@@ -1,4 +1,4 @@
-import { _, fs, path, exec, date, yaml, request } from '../lib'
+import { _, fs, path, exec, date, yaml } from '../src'
 
 describe('commons', () => {
   it('lodash', () => {

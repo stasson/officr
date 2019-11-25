@@ -41,7 +41,12 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "global": {
+      "ts-jest": {
+        "diagnostics": false
+      }
+    }
   },
   "devDependencies": {
     "@officr/jest-utils": "^1.2.0"
