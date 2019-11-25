@@ -1,15 +1,15 @@
 import enquirer from 'enquirer'
 import SuggestPrompt from './suggest-prompt'
 
-type PromptMessage = string | (() => string) | (() => Promise<string>)
+export type PromptMessage = string | (() => string) | (() => Promise<string>)
 
-type PromptValidate = (
+export type PromptValidate = (
   value: string
 ) => boolean | Promise<boolean> | string | Promise<string>
 
-type PromptResult = (value: string) => string | Promise<string>
+export type PromptResult = (value: string) => string | Promise<string>
 
-interface PromptInputOptions {
+export interface PromptInputOptions {
   initial?: string
   hint?: string
   validate?: PromptValidate
@@ -67,7 +67,7 @@ const text = async (message: PromptMessage, options?: PromptInputOptions) => {
   return answer as string
 }
 
-interface PromptConfirmOptions {
+export interface PromptConfirmOptions {
   initial?: boolean
 }
 
@@ -84,7 +84,7 @@ const confirm = async (
   return typeof answer === 'boolean' ? answer : false
 }
 
-interface PromptNumeralOptions {
+export interface PromptNumeralOptions {
   min?: number
   max?: number
   delay?: number
@@ -108,7 +108,7 @@ const numeral = async (
   return answer as number
 }
 
-interface PromptChoice {
+export interface PromptChoice {
   name: string
   message?: string
   value?: string
@@ -116,7 +116,7 @@ interface PromptChoice {
   disabled?: boolean | string
 }
 
-interface PromptSelectOptions {
+export interface PromptSelectOptions {
   initial?: number
   limit?: number
   result?: PromptResult
@@ -167,7 +167,7 @@ const autocomplete = async <T extends string | PromptChoice>(
   return answer
 }
 
-interface PromptSuggestOptions {
+export interface PromptSuggestOptions {
   initial?: number
 }
 
@@ -184,7 +184,7 @@ const suggest = async <T extends string | PromptChoice>(
   }).run()
 }
 
-export = Object.assign(enquirer.prompt, {
+export default Object.assign(enquirer.prompt, {
   input,
   numeral,
   confirm,

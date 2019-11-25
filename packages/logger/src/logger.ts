@@ -9,7 +9,7 @@ import { unstyle } from 'ansi-colors'
 type LogType = 'debug' | 'log' | 'info' | 'warning' | 'error' | 'success'
 const logTypes = ['debug', 'log', 'info', 'warning', 'error', 'success']
 
-interface IWriteStreamOptions {
+export interface IWriteStreamOptions {
   flags?: string
   encoding?: string
   fd?: number
@@ -27,7 +27,7 @@ interface ILogData {
 }
 
 /** Log Configuration */
-interface ILogConfig {
+export interface ILogConfig {
   /** whether to log to the console or not
    * @default true
    */
