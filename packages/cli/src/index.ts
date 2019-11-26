@@ -7,20 +7,21 @@ import CAC from 'cac/types/CAC'
 loudRejection(log => {
   logger.error(log ? log.split('\n')[0] : 'unexpected error')
   logger.debug(log)
+  process.exitCode = -1
 })
 
 async function run(cli: CAC, argv?: any[]) {
   try {
-    logger.configure({ stats: true, exitCode: true })
-
     const { args } = cli.parse(argv, { run: false })
-    if (cli.matchedCommand) {
+    if (cli.matchedCommandName) {
+      Object.assign(cli, logger.label(cli.matchedCommandName))
       await Promise.resolve(cli.runMatchedCommand())
     } else {
       if (args.length) {
         logger.error(`unknown command ${args[0]}`)
+      } else {
+        cli.outputHelp()
       }
-      cli.outputHelp()
     }
   } catch (err) {
     logger.error(err.message || err)
@@ -29,8 +30,8 @@ async function run(cli: CAC, argv?: any[]) {
   }
 }
 
-export default function(info?: { name?: string; version?: string }) {
-  const { name, version } = info || {}
+export = (options?: { name?: string; version?: string }) => {
+  const { name, version } = options || {}
 
   const cli = cac(name)
   if (version) {
@@ -39,8 +40,8 @@ export default function(info?: { name?: string; version?: string }) {
   cli.help()
 
   return Object.assign(cli, {
-    logger,
     prompt,
+    logger,
     run: (argv?: any[]) => run(cli, argv)
   })
 }

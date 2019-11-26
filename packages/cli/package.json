@@ -25,6 +25,7 @@
     "build": "tsc",
     "clean": "rimraf lib",
     "prepack": "rimraf lib && tsc",
+    "pretest": "tsc",
     "test": "jest"
   },
   "bugs": {
@@ -48,5 +49,8 @@
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
+  },
+  "devDependencies": {
+    "execa": "^3.4.0"
   }
 }
