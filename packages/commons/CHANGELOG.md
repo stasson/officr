@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/stasson/officr/compare/@officr/commons@1.2.0...@officr/commons@1.3.0) (2019-11-26)
+
+### Bug Fixes
+
+- **officr:** missing type exports
+  ([1574c9d](https://github.com/stasson/officr/commit/1574c9d6a39952631bd536d0e835b232fc516531))
+
+### Features
+
+- **commons:** add logger and yaml
+  ([245c4e7](https://github.com/stasson/officr/commit/245c4e7ba78d0298f42bf0ec28315e85320d4e59))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.2.0](https://github.com/stasson/officr/compare/@officr/commons@1.1.0...@officr/commons@1.2.0) (2019-11-19)
 
 ### Features

@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/stasson/officr/compare/@officr/logger@1.2.0...@officr/logger@1.3.0) (2019-11-26)
+
+### Bug Fixes
+
+- **officr:** missing type exports
+  ([1574c9d](https://github.com/stasson/officr/commit/1574c9d6a39952631bd536d0e835b232fc516531))
+
+### Features
+
+- **logger:** errors set exit code by default
+  ([b0d62b8](https://github.com/stasson/officr/commit/b0d62b82bbfdda1a33c9d34bcb85200d4038e387))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.2.0](https://github.com/stasson/officr/compare/@officr/logger@1.1.0...@officr/logger@1.2.0) (2019-11-19)
 
 ### Features

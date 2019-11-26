@@ -1,6 +1,6 @@
 {
   "name": "@officr/prompt",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "prompt utils",
   "keywords": [
     "prompt",
@@ -49,6 +49,6 @@
     }
   },
   "devDependencies": {
-    "@officr/jest-utils": "^1.2.0"
+    "@officr/jest-utils": "^1.3.0"
   }
 }
