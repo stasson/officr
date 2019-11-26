@@ -3,7 +3,7 @@ import logger from '../src'
 describe('logger', () => {
   it('can log', () => {
     const restoreCode = process.exitCode
-    logger.configure({ stats: true, exitCode: true, timestamp: true })
+    logger.config({ stats: true, exitCode: true, timestamp: true })
     logger.record('log-spec.log')
     logger.debug('log')
     logger.label('label').log('log')

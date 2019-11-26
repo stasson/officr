@@ -34,7 +34,7 @@ export interface ILogConfig {
   console?: boolean
 
   /** whether to set the exit code to the number of errors
-   * @default false
+   * @default true
    */
   exitCode?: boolean
 
@@ -50,14 +50,14 @@ export interface ILogConfig {
 }
 
 const logConfig: ILogConfig = {
-  console: true
+  console: true,
+  exitCode: true,
+  stats: false,
+  timestamp: false
 }
 
-function configure(options: ILogConfig = {}) {
-  logConfig.console = (options && options.console) || true
-  logConfig.stats = (options && options.stats) || false
-  logConfig.exitCode = (options && options.exitCode) || false
-  logConfig.timestamp = (options && options.timestamp) || false
+function config(options: ILogConfig = {}) {
+  Object.assign(logConfig, options)
   return logConfig
 }
 
@@ -76,7 +76,8 @@ const logColors = {
   info: colors.blue,
   log: colors.reset,
   success: colors.green,
-  warning: colors.yellow
+  warning: colors.yellow,
+  unstyle
 }
 
 const logDesc = {
@@ -260,7 +261,6 @@ function beforeExit() {
 }
 
 // Setup
-configure()
 logEvents.on('data', onData)
 if (logState.isDebug) {
   logEvents.on('debug', onDebug)
@@ -275,8 +275,8 @@ process.once('beforeExit', beforeExit)
 
 export default {
   /** set log config */
-  configure(options?: ILogConfig) {
-    return configure(options)
+  config(options?: ILogConfig) {
+    return config(options)
   },
   /** pipe logs to a writable stream */
   pipe(writable: Writable, objectMode: boolean = false) {
