@@ -11,13 +11,12 @@ loudRejection((log) => {
 
 async function run(cli: CAC, argv?: any[]) {
   try {
-    const { args } = cli.parse(argv || process.argv, { run: false })
+    const { args } = cli.parse(argv, { run: false })
+
     if (cli.matchedCommandName) {
-      const { log, debug, warn, error, success } = logger.label(
-        cli.matchedCommandName
-      )
-      Object.assign(cli, { log, debug, warn, error, success })
+      Object.assign(cli, logger.label(cli.matchedCommandName))
     }
+
     await cli.runMatchedCommand()
   } catch (err) {
     logger.error(err.message || err)
@@ -34,18 +33,23 @@ export = (options?: { name?: string; version?: string }) => {
     console: true,
     exitCode: true,
   })
-  const { log, debug, warn, error, success } = logger
 
   const cli = cac(name)
+
+  // configure version
   if (version) {
     cli.version(version)
   }
+
+  // configure help
   cli.help()
+
+  const { log, debug, info, warn, error, success } = logger
 
   return Object.assign(
     cli,
     { prompt, logger },
     { run: (argv?: any[]) => run(cli, argv) },
-    { log, debug, warn, error, success }
+    { log, debug, info, warn, error, success }
   )
 }

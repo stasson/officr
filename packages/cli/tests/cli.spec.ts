@@ -4,11 +4,21 @@ const fixture = path.join(__dirname, 'fixture.js')
 const unstyle = logger.colors.unstyle
 
 describe('cli', () => {
-  it('help by default', async () => {
+  it('help', async () => {
     expect.hasAssertions()
     const { exitCode, stdout } = await exec.command(`node ${fixture}`, {
       shell: true,
     })
+    expect(exitCode).toEqual(0)
+  })
+  it('version', async () => {
+    expect.hasAssertions()
+    const { exitCode, stdout } = await exec.command(
+      `node ${fixture} --version`,
+      {
+        shell: true,
+      }
+    )
     expect(exitCode).toEqual(0)
   })
   it('command', async () => {
@@ -19,7 +29,7 @@ describe('cli', () => {
     expect({ exitCode, stdout: unstyle(stdout) }).toMatchInlineSnapshot(`
       Object {
         "exitCode": 0,
-        "stdout": "› fixture   fixture ",
+        "stdout": "✔ fixture   ",
       }
     `)
   })
@@ -32,7 +42,7 @@ describe('cli', () => {
       const { exitCode, stdout } = result
       expect({ exitCode, stdout: unstyle(stdout) }).toMatchInlineSnapshot(`
         Object {
-          "exitCode": 1,
+          "exitCode": 255,
           "stdout": "✖ error     failed ",
         }
       `)

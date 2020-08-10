@@ -243,7 +243,7 @@ function onEnd() {
 
     // set exit code
     if (logConfig.exitCode) {
-      process.exitCode = -1
+      process.exitCode = logCounters.errors > 0 ? -1 : 0
     }
 
     // log stats
