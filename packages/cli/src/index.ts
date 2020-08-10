@@ -13,7 +13,10 @@ async function run(cli: CAC, argv?: any[]) {
   try {
     const { args } = cli.parse(argv || process.argv, { run: false })
     if (cli.matchedCommandName) {
-      Object.assign(cli, logger.label(cli.matchedCommandName))
+      const { log, debug, warn, error, success } = logger.label(
+        cli.matchedCommandName
+      )
+      Object.assign(cli, { log, debug, warn, error, success })
     }
     await cli.runMatchedCommand()
   } catch (err) {
@@ -26,6 +29,13 @@ async function run(cli: CAC, argv?: any[]) {
 export = (options?: { name?: string; version?: string }) => {
   const { name, version } = options || {}
 
+  // configure logger
+  logger.config({
+    console: true,
+    exitCode: true,
+  })
+  const { log, debug, warn, error, success } = logger
+
   const cli = cac(name)
   if (version) {
     cli.version(version)
@@ -34,8 +44,8 @@ export = (options?: { name?: string; version?: string }) => {
 
   return Object.assign(
     cli,
-    { prompt },
+    { prompt, logger },
     { run: (argv?: any[]) => run(cli, argv) },
-    logger
+    { log, debug, warn, error, success }
   )
 }
