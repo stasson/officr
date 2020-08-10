@@ -21,7 +21,7 @@ describe('logger', () => {
       }
     `)
     logger.end()
-    expect(process.exitCode).toMatchInlineSnapshot(`1`)
+    expect(process.exitCode).toMatchInlineSnapshot(`-1`)
     process.exitCode = restoreCode
   })
 })

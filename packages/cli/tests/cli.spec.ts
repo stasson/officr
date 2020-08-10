@@ -7,14 +7,14 @@ describe('cli', () => {
   it('help by default', async () => {
     expect.hasAssertions()
     const { exitCode, stdout } = await exec.command(`node ${fixture}`, {
-      shell: true
+      shell: true,
     })
     expect(exitCode).toEqual(0)
   })
   it('command', async () => {
     expect.hasAssertions()
     const { exitCode, stdout } = await exec.command(`node ${fixture} fixture`, {
-      shell: true
+      shell: true,
     })
     expect({ exitCode, stdout: unstyle(stdout) }).toMatchInlineSnapshot(`
       Object {
@@ -26,7 +26,7 @@ describe('cli', () => {
   it('error', () => {
     try {
       exec.commandSync(`node ${fixture} error`, {
-        shell: true
+        shell: true,
       })
     } catch (result) {
       const { exitCode, stdout } = result
@@ -41,13 +41,13 @@ describe('cli', () => {
   it('throw', () => {
     try {
       exec.commandSync(`node ${fixture} throw`, {
-        shell: true
+        shell: true,
       })
     } catch (result) {
       const { exitCode, stdout } = result
       expect({ exitCode, stdout: unstyle(stdout) }).toMatchInlineSnapshot(`
         Object {
-          "exitCode": 1,
+          "exitCode": 255,
           "stdout": "✖ error     error ",
         }
       `)
@@ -56,7 +56,7 @@ describe('cli', () => {
   it('unknown', () => {
     try {
       exec.commandSync(`node ${fixture} unknown`, {
-        shell: true
+        shell: true,
       })
     } catch (result) {
       const { exitCode, stdout } = result
