@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/stasson/officr/compare/@officr/commons@1.3.0...@officr/commons@1.3.1) (2020-08-10)
+
+**Note:** Version bump only for package @officr/commons
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.3.0](https://github.com/stasson/officr/compare/@officr/commons@1.2.0...@officr/commons@1.3.0) (2019-11-26)
 
 ### Bug Fixes

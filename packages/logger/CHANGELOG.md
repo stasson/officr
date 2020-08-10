@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/stasson/officr/compare/@officr/logger@1.3.0...@officr/logger@1.4.0) (2020-08-10)
+
+### Features
+
+- **logger:** exit code for errors is optional
+  ([94e0650](https://github.com/stasson/officr/commit/94e0650c187cc596668ed028dfef344126e42e95))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.3.0](https://github.com/stasson/officr/compare/@officr/logger@1.2.0...@officr/logger@1.3.0) (2019-11-26)
 
 ### Bug Fixes
