@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/stasson/officr/compare/@officr/logger@1.4.0...@officr/logger@1.4.1) (2020-08-10)
+
+### Bug Fixes
+
+- **cli:** logger error sets exit code
+  ([1f05add](https://github.com/stasson/officr/commit/1f05addc9ae1234c605dcdbb5700fcaff2d7b393))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 # [1.4.0](https://github.com/stasson/officr/compare/@officr/logger@1.3.0...@officr/logger@1.4.0) (2020-08-10)
 
 ### Features

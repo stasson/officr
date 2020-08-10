@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.3](https://github.com/stasson/officr/compare/@officr/cli@1.3.2...@officr/cli@1.3.3) (2020-08-10)
+
+### Bug Fixes
+
+- **cli:** fix logger api
+  ([521ab50](https://github.com/stasson/officr/commit/521ab50ed72191f1b803393a3f3ed6a850642fa4))
+- **cli:** logger error sets exit code
+  ([1f05add](https://github.com/stasson/officr/commit/1f05addc9ae1234c605dcdbb5700fcaff2d7b393))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.3.2](https://github.com/stasson/officr/compare/@officr/cli@1.3.1...@officr/cli@1.3.2) (2020-08-10)
 
 ### Bug Fixes
