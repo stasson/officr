@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.2](https://github.com/stasson/officr/compare/@officr/cli@1.3.1...@officr/cli@1.3.2) (2020-08-10)
+
+### Bug Fixes
+
+- **cli:** support default command parsing
+  ([1f92e12](https://github.com/stasson/officr/commit/1f92e12a1ba98de2fb6193787deb23f9103414d6))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.3.1](https://github.com/stasson/officr/compare/@officr/cli@1.3.0...@officr/cli@1.3.1) (2020-08-10)
 
 **Note:** Version bump only for package @officr/cli
