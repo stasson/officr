@@ -34,6 +34,7 @@
     "@types/lodash": "^4.14.159",
     "date-fns": "^2.15.0",
     "execa": "^4.0.3",
+    "fast-glob": "^3.2.4",
     "fs-extra": "^9.0.1",
     "got": "^11.5.2",
     "import-lazy": "^4.0.0",

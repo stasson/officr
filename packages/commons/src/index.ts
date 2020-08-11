@@ -2,6 +2,7 @@
 import _lodash from 'lodash'
 import _fs from 'fs-extra'
 import _path from 'upath'
+import _glob from 'fast-glob'
 import _exec from 'execa'
 import _yaml from 'js-yaml'
 import _date from 'date-fns'
@@ -15,6 +16,7 @@ const include = importLazy(require)
 export const _ = include('lodash') as typeof _lodash
 export const fs = include('fs-extra') as typeof _fs
 export const path = include('upath') as typeof _path
+export const glob = include('fast-glob') as typeof _glob
 export const exec = include('execa') as typeof _exec
 export const yaml = include('js-yaml') as typeof _yaml
 export const date = include('date-fns') as typeof _date
