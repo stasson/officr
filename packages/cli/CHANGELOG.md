@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.4](https://github.com/stasson/officr/compare/@officr/cli@1.3.3...@officr/cli@1.3.4) (2020-08-11)
+
+### Bug Fixes
+
+- **cli:** remove @types/loud-rejection warning
+  ([536d409](https://github.com/stasson/officr/commit/536d4096e74a8926899a2806051eb02bbb28cde3))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.3.3](https://github.com/stasson/officr/compare/@officr/cli@1.3.2...@officr/cli@1.3.3) (2020-08-10)
 
 ### Bug Fixes

@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file. See
 [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/stasson/officr/compare/@officr/commons@1.3.2...@officr/commons@1.4.0) (2020-08-11)
+
+### Features
+
+- **commons:** add fast-glob
+  ([82a2621](https://github.com/stasson/officr/commit/82a2621f98ccc5e97a23e9561862bd804b085c99))
+
+# Change Log
+
+All notable changes to this project will be documented in this file. See
+[Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
 ## [1.3.2](https://github.com/stasson/officr/compare/@officr/commons@1.3.1...@officr/commons@1.3.2) (2020-08-10)
 
 **Note:** Version bump only for package @officr/commons
