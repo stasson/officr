@@ -2,11 +2,18 @@
   "name": "@officr/logger",
   "version": "2.0.0",
   "description": "lightweight logger",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stasson/officr.git"
+  },
   "bugs": {
     "url": "https://github.com/stasson/officr/issues"
   },
   "homepage": "https://github.com/stasson/officr#readme",
-  "keywords": ["officr", "logger"],
+  "keywords": [
+    "officr",
+    "logger"
+  ],
   "author": "stasson",
   "license": "MIT",
   "main": "dist/index.js",
@@ -18,60 +25,5 @@
     "node": ">=12.20",
     "npm": "8.x"
   },
-  "standard-version": {
-    "scripts": {
-      "postbump": "npm pkg get version | xargs npm version --ws --allow-same-version"
-    }
-  },
-  "jest": {
-    "preset": "ts-jest",
-    "testEnvironment": "node"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "semi": false,
-    "proseWrap": "always"
-  },
-  "eslintConfig": {
-    "root": true,
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint",
-      "prettier"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:prettier/recommended",
-      "plugin:jest/recommended"
-    ]
-  },
-  "eslintIgnore": [
-    "dist/*"
-  ],
-  "scripts": {
-    "clean": "shx rm -rf dist",
-    "compile": "tsc -p .",
-    "prebuild": "run-s clean",
-    "build": "run-s compile",
-    "prerelease": "run-s build"
-  },
-  "devDependencies": {
-    "@tsconfig/node12": "^1.0.9",
-    "@types/node": "^12.20.41",
-    "npm-run-all": "^4.1.5",
-    "shx": "^0.3.3",
-    "ts-jest": "^27.1.2",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.5.4"
-  },
-  "dependencies": {
-    "@types/fs-extra": "^9.0.13",
-    "@types/prompts": "^2.0.14",
-    "cac": "^6.7.12",
-    "execa": "^6.0.0",
-    "fs-extra": "^10.0.0",
-    "prompts": "^2.4.2",
-    "v8-compile-cache": "^2.3.0"
-  }
+  "dependencies": {}
 }
