@@ -1,7 +1,7 @@
 {
-  "name": "logger",
+  "name": "@officr/logger",
   "version": "2.0.0",
-  "description": "light weight logger",
+  "description": "lightweight logger",
   "bugs": {
     "url": "https://github.com/stasson/officr/issues"
   },

@@ -31,6 +31,10 @@
       "postbump": "npm pkg get version | xargs npm version --ws --allow-same-version"
     }
   },
+  "standard-commit": {
+    "scopes": "packages",
+    "promptScope": "suggest"
+  },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
