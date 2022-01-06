@@ -1,0 +1,104 @@
+{
+  "name": "officr",
+  "version": "2.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stasson/officr.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stasson/officr/issues"
+  },
+  "homepage": "https://github.com/stasson/officr#readme",
+  "private": false,
+  "publish": true,
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": "bin/cli.js",
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "engines": {
+    "node": ">=12.20",
+    "npm": "8.x"
+  },
+  "standard-version": {
+    "scripts": {
+      "postbump": "npm pkg get version | xargs npm version --ws --allow-same-version"
+    }
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "semi": false,
+    "proseWrap": "always"
+  },
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": [
+      "@typescript-eslint",
+      "prettier"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:prettier/recommended",
+      "plugin:jest/recommended"
+    ]
+  },
+  "eslintIgnore": [
+    "dist/*"
+  ],
+  "scripts": {
+    "prepare": "husky install",
+    "test": "jest",
+    "update": "jest --updateSnapshot",
+    "coverage": "jest --coverage",
+    "dev": "jest --watch",
+    "format": "prettier --write **/*.{js,ts,md,json}",
+    "lint": "eslint --ext .js,.ts .",
+    "prefix": "run-s format",
+    "fix": "eslint --fix --ext .js,.ts .",
+    "precommit": "run-s lint",
+    "commit": "npx standard-commit",
+    "clean": "shx rm -rf dist",
+    "compile": "tsc -p .",
+    "prebuild": "run-s clean lint test",
+    "build": "run-s compile",
+    "prerelease": "run-s build",
+    "release": "npx standard-version",
+    "postrelease": "git push --follow-tags origin main && npm publish"
+  },
+  "devDependencies": {
+    "@tsconfig/node12": "^1.0.9",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^12.20.41",
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^25.3.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "jest": "^27.4.7",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.5.1",
+    "shx": "^0.3.3",
+    "standard-commit": "^4.2.5",
+    "standard-version": "^9.3.2",
+    "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.4"
+  },
+  "workspaces": [
+    "packages/logger"
+  ]
+}
