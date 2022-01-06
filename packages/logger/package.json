@@ -25,5 +25,7 @@
     "node": ">=12.20",
     "npm": "8.x"
   },
-  "dependencies": {}
+  "dependencies": {
+    "ansi-colors": "^4.1.1"
+  }
 }
