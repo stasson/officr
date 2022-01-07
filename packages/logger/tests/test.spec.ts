@@ -38,7 +38,7 @@ describe('logger', () => {
   })
 
   it('can log', () => {
-    logger.config({stats:true})
+    logger.config({ stats: true })
     logger.debug('log')
     logger.label('label').log('log')
     logger.info('info')
@@ -74,7 +74,6 @@ describe('logger', () => {
       }
     `)
   })
-
 
   it('can log with timestamps', () => {
     logger.config({ timestamp: true })

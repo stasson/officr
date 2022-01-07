@@ -297,7 +297,7 @@ export default {
     return pipe(writable, objectMode)
   },
   /** record logs in a file */
-  record(path: string, json: boolean = false) {
+  record(path: string, json = false) {
     const stream = createWriteStream(path, 'utf8')
     this.pipe(stream, json)
     return stream
