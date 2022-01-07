@@ -1,9 +1,13 @@
 {
-  "extends": "../../tsbase.json",
-  "include": ["src/**/*.ts"],
+  "extends": "@tsconfig/node12/tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
-    "rootDir": "src",
-    "composite": true
-  }
+    "esModuleInterop": true,
+    "preserveConstEnums": true,
+    "composite": true,
+    "declaration": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
+  },
+  "exclude": ["node_modules", "dist", "tests"],
+  "include": ["./src/**/*"]
 }

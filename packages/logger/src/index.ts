@@ -8,59 +8,8 @@ import { EOL } from 'os'
 import colors, { symbols, unstyle } from 'ansi-colors'
 
 type LogType = 'debug' | 'log' | 'info' | 'warning' | 'error' | 'success'
+
 const logTypes = ['debug', 'log', 'info', 'warning', 'error', 'success']
-
-export interface IWriteStreamOptions {
-  flags?: string
-  encoding?: string
-  fd?: number
-  mode?: number
-  autoClose?: boolean
-  start?: number
-  highWaterMark?: number
-}
-
-interface ILogData {
-  type: LogType
-  label?: string
-  args: any[]
-  timestamp: number
-}
-
-/** Log Configuration */
-export interface ILogConfig {
-  /** whether to log to the console or not
-   * @default true
-   */
-  console?: boolean
-
-  /** whether to set the exit code to the number of errors
-   * @default false
-   */
-  exitCode?: boolean
-
-  /** whether to log the number of errors at exit
-   * @default false
-   */
-  stats?: boolean
-
-  /** whether to add timestamp
-   * @default false
-   */
-  timestamp?: boolean
-}
-
-const logConfig: ILogConfig = {
-  console: true,
-  exitCode: false,
-  stats: false,
-  timestamp: false,
-}
-
-function config(options: ILogConfig = {}) {
-  Object.assign(logConfig, options)
-  return logConfig
-}
 
 const logSymbols = {
   debug: symbols.pointer,
@@ -120,8 +69,68 @@ const logDesc = {
   },
 }
 
+export interface IWriteStreamOptions {
+  flags?: string
+  encoding?: string
+  fd?: number
+  mode?: number
+  autoClose?: boolean
+  start?: number
+  highWaterMark?: number
+}
+
+interface ILogData {
+  type: LogType
+  label?: string
+  args: any[]
+  timestamp: number
+}
+
+/** Log Configuration */
+export interface ILogConfig {
+  /** whether to log to the console or not
+   * @default true
+   */
+  console?: boolean
+
+  /** whether to set the exit code to the number of errors
+   * @default false
+   */
+  exitCode?: boolean
+
+  /** whether to log the number of errors at exit
+   * @default false
+   */
+  stats?: boolean
+
+  /** whether to add timestamp
+   * @default false
+   */
+  timestamp?: boolean
+}
+
+const logConfigDefaults: ILogConfig = {
+  console: true,
+  exitCode: false,
+  stats: false,
+  timestamp: false,
+}
+
+const logConfig: ILogConfig = Object.assign({}, logConfigDefaults)
+
+function config(options: ILogConfig = logConfigDefaults) {
+  return Object.assign(logConfig, options)
+}
+
+const logCounters = {
+  errors: 0,
+  success: 0,
+  warnings: 0,
+}
+
 const logState = {
-  isDebug: !!process.env.DEBUG,
+  isTest: process.env.NODE_ENV == 'test',
+  isDebug: !!process.env.DEBUG || process.env.NODE_ENV == 'test',
   isEnded: false,
 }
 
@@ -134,16 +143,15 @@ function emit(data: Partial<ILogData>) {
   )
 }
 
-const logCounters = {
-  errors: 0,
-  success: 0,
-  warnings: 0,
-}
-
 /** get log stats */
 function stats() {
   const { errors, warnings, success } = logCounters
   const total = errors + warnings + success
+  Object.assign(logCounters, {
+    errors: 0,
+    success: 0,
+    warnings: 0,
+  })
   return { total, errors, warnings, success }
 }
 
@@ -160,7 +168,7 @@ function formattime(timestamp: number) {
 }
 
 function formatlog(data: ILogData) {
-  const { type, args, timestamp } = data
+  const { type, args } = data
   const { symbol, label, color } = logDesc[type]
 
   const prefix = color(
@@ -168,8 +176,8 @@ function formatlog(data: ILogData) {
   )
 
   if (logConfig.timestamp) {
-    const time = logColors.debug(formattime(timestamp))
-    return util.format(time, prefix, ...args, EOL)
+    const timestamp = logColors.debug(formattime(data.timestamp))
+    return util.format(timestamp, prefix, ...args, EOL)
   } else {
     return util.format(prefix, ...args, EOL)
   }
@@ -187,21 +195,30 @@ function streamWrite(writable: Writable, data: ILogData) {
 
 function pipe(writable: Writable, objectMode = false) {
   if (objectMode) {
-    logEvents.on('data', (data) => writable.write(data))
+    logEvents.on('data', (data) => {
+      if (!writable.writableEnded) {
+        const { type, args } = data
+        const timestamp = formattime(data.timestamp)
+        const line = JSON.stringify({ timestamp, type, args })
+        writable.write(`${line},\n`)
+      }
+    })
   } else {
     logEvents.on('data', (data: ILogData) => {
-      streamWrite(writable, data)
+      if (!writable.writableEnded) streamWrite(writable, data)
     })
   }
 
-  logEvents.once('end', () => {
-    if (logConfig.stats) {
-      const { errors, warnings } = logCounters
-      const args = [`errors: ${errors}, warnings: ${warnings}`]
-      const type = errors ? 'error' : warnings ? 'warning' : 'success'
-      streamWrite(writable, { args, type, timestamp: Date.now() })
+  process.once('beforeExit', () => {
+    if (!writable.writableEnded) {
+      if (logConfig.stats) {
+        const { errors, warnings } = logCounters
+        const args = [`errors: ${errors}, warnings: ${warnings}`]
+        const type = errors ? 'error' : warnings ? 'warning' : 'success'
+        streamWrite(writable, { args, type, timestamp: Date.now() })
+      }
+      writable.end()
     }
-    writable.end()
   })
   return writable
 }
@@ -238,8 +255,7 @@ function onSuccess(data: ILogData) {
 function onEnd() {
   if (!logState.isEnded) {
     // terminate
-    logState.isEnded = true
-    logEvents.emit('end')
+    if (!logState.isTest) logState.isEnded = true
 
     // set exit code
     if (logConfig.exitCode) {
@@ -256,10 +272,6 @@ function onEnd() {
   }
 }
 
-function beforeExit() {
-  return logEvents.emit('end')
-}
-
 // Setup
 logEvents.on('data', onData)
 if (logState.isDebug) {
@@ -270,12 +282,14 @@ logEvents.on('info', onInfo)
 logEvents.on('warning', onWarning)
 logEvents.on('error', onError)
 logEvents.on('success', onSuccess)
-logEvents.once('end', onEnd)
-process.once('beforeExit', beforeExit)
+logEvents.on('end', onEnd)
+process.once('beforeExit', () => {
+  logEvents.emit('end')
+})
 
 export default {
   /** set log config */
-  config(options?: ILogConfig) {
+  config(options: ILogConfig = logConfigDefaults) {
     return config(options)
   },
   /** pipe logs to a writable stream */
@@ -283,19 +297,22 @@ export default {
     return pipe(writable, objectMode)
   },
   /** record logs in a file */
-  record(path: string, options?: string | IWriteStreamOptions) {
-    return pipe(createWriteStream(path, options || undefined))
+  record(path: string, json: boolean = false) {
+    const stream = createWriteStream(path, 'utf8')
+    this.pipe(stream, json)
+    return stream
   },
-  get stats() {
+  /** read stats */
+  stats() {
     return stats()
   },
   /** stop logging */
   end() {
     return logEvents.emit('end')
   },
-  /** emit log data */
-  emit(type: LogType, ...args: any[]) {
-    return emit({ type, args })
+  /** return formated timestamp */
+  timestamp(date = Date.now()) {
+    return formattime(date)
   },
   /** log some debug data */
   debug(...args: any[]) {
