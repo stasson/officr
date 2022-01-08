@@ -84,10 +84,5 @@ const stream = logger.pipe(...)
 ## Stats
 
 ```typescript
-const {
-  total,
-  errors,
-  warnings,
-  success
-} = logger.stats()
+const { total, errors, warnings, success } = logger.stats()
 ```

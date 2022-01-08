@@ -8,13 +8,17 @@ async function sleep(ms: number) {
 }
 
 function stdoutSpy(): () => string {
-  const stdout = jest.spyOn(global.process.stdout, 'write').mock
-  const stderr = jest.spyOn(global.process.stderr, 'write').mock
+  const stdout = jest
+    .spyOn(global.process.stdout, 'write')
+    .mockImplementation(() => false)
+  const stderr = jest
+    .spyOn(global.process.stderr, 'write')
+    .mockImplementation(() => false)
 
   return () =>
     '\n' +
-    stdout.calls
-      .concat(stderr.calls)
+    stdout.mock.calls
+      .concat(stderr.mock.calls)
       .map((args) => args.map((it) => `${it}`).join(''))
       .join('')
 }

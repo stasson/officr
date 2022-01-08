@@ -37,7 +37,8 @@
   },
   "jest": {
     "preset": "ts-jest",
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [ "template" ]
   },
   "prettier": {
     "singleQuote": true,
