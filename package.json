@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/stasson/officr#readme",
   "private": false,
-  "publish": true,
+  "publish": false,
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": "bin/cli.js",
@@ -78,7 +78,7 @@
     "build": "tsc --build --force tsbuild.json",
     "prerelease": "run-s build",
     "release": "npx standard-version",
-    "postrelease": "git push --follow-tags origin main && npm publish"
+    "postrelease": "git push --follow-tags origin main && npm publish -ws"
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.9",
