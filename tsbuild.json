@@ -1,4 +1,7 @@
 {
   "files": [],
-  "references": [{ "path": "packages/logger" }]
+  "references": [
+    { "path": "packages/logger" },
+    { "path": "packages/cli" }
+  ]
 }

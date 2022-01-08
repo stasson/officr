@@ -1,0 +1,28 @@
+{
+  "name": "@officr/cli",
+  "version": "2.1.1",
+  "description": "lightweight cli runner",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stasson/officr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stasson/officr/issues"
+  },
+  "homepage": "https://github.com/stasson/officr#readme",
+  "keywords": [
+    "officr",
+    "cli"
+  ],
+  "author": "stasson",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=12.20",
+    "npm": "8.x"
+  }
+}
