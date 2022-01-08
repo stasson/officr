@@ -77,7 +77,7 @@
     "prebuild": "run-s lint test",
     "build": "tsc --build --force tsbuild.json",
     "prerelease": "run-s build",
-    "release": "npx standard-version",
+    "release": "npx standard-version -a",
     "postrelease": "git push --follow-tags origin main && npm publish -ws"
   },
   "devDependencies": {
