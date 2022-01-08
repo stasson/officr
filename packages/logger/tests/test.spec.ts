@@ -20,7 +20,7 @@ function stdoutSpy(): () => string {
 }
 
 describe('logger', () => {
-  var stdout: () => string
+  let stdout: () => string
 
   beforeEach(() => {
     jest.spyOn(global.Date, 'now').mockReturnValue(0)
