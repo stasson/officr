@@ -27,6 +27,7 @@
     "npm": "8.x"
   },
   "standard-version": {
+    "commitAll": true,
     "scripts": {
       "postbump": "npm pkg get version | xargs npm version --ws --allow-same-version"
     }
@@ -80,7 +81,7 @@
     "prebuild": "run-s lint test",
     "build": "tsc --build --force tsbuild.json",
     "prerelease": "run-s build",
-    "release": "npx standard-version -a",
+    "release": "npx standard-version",
     "postrelease": "git push --follow-tags origin main && npm publish -ws"
   },
   "devDependencies": {
