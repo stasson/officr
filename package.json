@@ -109,6 +109,6 @@
   },
   "workspaces": [
     "packages/logger",
-    "package/cli"
+    "packages/cli"
   ]
 }
