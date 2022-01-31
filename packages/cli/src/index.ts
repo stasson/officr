@@ -26,8 +26,8 @@ export type Context = {
   success: { (...args: any[]): void }
 }
 
-export type Task = {
-  (this: Context, ...args: string[]): Promise<number | void> | number | void
+export type Task<Context> = {
+  (...args: string[]): Promise<number | void> | number | void
 }
 
 /**
@@ -36,7 +36,7 @@ export type Task = {
  * @param task an async or sync task function
  * @param args defaults to argv
  */
-export default async function run(task: Task, ...args: string[]) {
+export default async function run(task: Task<Context>, ...args: string[]) {
   try {
     // task's name or fallback on script filename
     const name =
@@ -55,7 +55,7 @@ export default async function run(task: Task, ...args: string[]) {
       info,
       warn,
       error,
-      success
+      success,
     }
 
     // assemble args

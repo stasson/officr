@@ -1,0 +1,35 @@
+{
+  "name": "@officr/parse",
+  "version": "2.1.1",
+  "description": "lightweight arg parser",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stasson/officr.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stasson/officr/issues"
+  },
+  "homepage": "https://github.com/stasson/officr#readme",
+  "keywords": [
+    "officr",
+    "parse"
+  ],
+  "author": "stasson",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=12.20",
+    "npm": "8.x"
+  },
+  "dependencies": {
+    "@officr/logger": "^2.1.1",
+    "lodash.camelcase": "^4.3.0",
+    "lodash.kebabcase": "^4.1.1",
+    "lodash.uniq": "^4.5.0",
+    "mri": "^1.2.0"
+  }
+}
