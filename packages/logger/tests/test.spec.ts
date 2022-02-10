@@ -95,13 +95,82 @@ describe('logger', () => {
 
     expect(`${stdout()}`).toMatchInlineSnapshot(`
       "
-      [2m[70-1-1 1:0:0.0][22m [0m›          [0m log 
-      [2m[70-1-1 1:0:0.0][22m [0m› label    [0m log 
-      [2m[70-1-1 1:0:0.0][22m [34mℹ info     [39m info 
-      [2m[70-1-1 1:0:0.0][22m [33m⚠ warning  [39m warning 
-      [2m[70-1-1 1:0:0.0][22m [31m✖ error    [39m error 
-      [2m[70-1-1 1:0:0.0][22m [32m✔ success  [39m success 
-      [2m[70-1-1 1:0:0.0][22m [2m❯ DEBUG    [22m debug 
+      [2m[01/01/1970 01:00:00][22m [0m›          [0m log 
+      [2m[01/01/1970 01:00:00][22m [0m› label    [0m log 
+      [2m[01/01/1970 01:00:00][22m [34mℹ info     [39m info 
+      [2m[01/01/1970 01:00:00][22m [33m⚠ warning  [39m warning 
+      [2m[01/01/1970 01:00:00][22m [31m✖ error    [39m error 
+      [2m[01/01/1970 01:00:00][22m [32m✔ success  [39m success 
+      [2m[01/01/1970 01:00:00][22m [2m❯ DEBUG    [22m debug 
+      "
+    `)
+  })
+
+  it('can log with time', () => {
+    logger.config({ timestamp: 'time' })
+    logger.debug('debug')
+    logger.log('log')
+    logger.label('label').log('log')
+    logger.info('info')
+    logger.warn('warning')
+    logger.error('error')
+    logger.success('success')
+
+    expect(`${stdout()}`).toMatchInlineSnapshot(`
+      "
+      [2m[01:00:00.000][22m [0m›          [0m log 
+      [2m[01:00:00.000][22m [0m› label    [0m log 
+      [2m[01:00:00.000][22m [34mℹ info     [39m info 
+      [2m[01:00:00.000][22m [33m⚠ warning  [39m warning 
+      [2m[01:00:00.000][22m [31m✖ error    [39m error 
+      [2m[01:00:00.000][22m [32m✔ success  [39m success 
+      [2m[01:00:00.000][22m [2m❯ DEBUG    [22m debug 
+      "
+    `)
+  })
+
+  it('can log with datetime', () => {
+    logger.config({ timestamp: 'datetime' })
+    logger.debug('debug')
+    logger.log('log')
+    logger.label('label').log('log')
+    logger.info('info')
+    logger.warn('warning')
+    logger.error('error')
+    logger.success('success')
+
+    expect(`${stdout()}`).toMatchInlineSnapshot(`
+      "
+      [2m[01/01/1970 01:00:00][22m [0m›          [0m log 
+      [2m[01/01/1970 01:00:00][22m [0m› label    [0m log 
+      [2m[01/01/1970 01:00:00][22m [34mℹ info     [39m info 
+      [2m[01/01/1970 01:00:00][22m [33m⚠ warning  [39m warning 
+      [2m[01/01/1970 01:00:00][22m [31m✖ error    [39m error 
+      [2m[01/01/1970 01:00:00][22m [32m✔ success  [39m success 
+      [2m[01/01/1970 01:00:00][22m [2m❯ DEBUG    [22m debug 
+      "
+    `)
+  })
+
+  it('can log with iso timestamp', () => {
+    logger.config({ timestamp: 'iso' })
+    logger.debug('debug')
+    logger.log('log')
+    logger.label('label').log('log')
+    logger.info('info')
+    logger.warn('warning')
+    logger.error('error')
+    logger.success('success')
+
+    expect(`${stdout()}`).toMatchInlineSnapshot(`
+      "
+      [2m[1970-01-01T00:00:00.000Z][22m [0m›          [0m log 
+      [2m[1970-01-01T00:00:00.000Z][22m [0m› label    [0m log 
+      [2m[1970-01-01T00:00:00.000Z][22m [34mℹ info     [39m info 
+      [2m[1970-01-01T00:00:00.000Z][22m [33m⚠ warning  [39m warning 
+      [2m[1970-01-01T00:00:00.000Z][22m [31m✖ error    [39m error 
+      [2m[1970-01-01T00:00:00.000Z][22m [32m✔ success  [39m success 
+      [2m[1970-01-01T00:00:00.000Z][22m [2m❯ DEBUG    [22m debug 
       "
     `)
   })
@@ -234,19 +303,19 @@ describe('logger', () => {
     expect(await pathExists(fname)).toBeTruthy()
     const result = await readFile(fname, 'utf-8')
     expect(result).toMatchInlineSnapshot(`
-      "[\\"[70-1-1 1:0:0.0]\\",\\"debug\\",\\"debug\\"],
-      [\\"[70-1-1 1:0:0.0]\\",\\"log\\",\\"log\\"],
-      [\\"[70-1-1 1:0:0.0]\\",\\"log\\",\\"log\\"],
-      [\\"[70-1-1 1:0:0.0]\\",\\"info\\",\\"info\\"],
-      [\\"[70-1-1 1:0:0.0]\\",\\"warning\\",\\"warning\\"],
-      [\\"[70-1-1 1:0:0.0]\\",\\"error\\",\\"error\\"],
-      [\\"[70-1-1 1:0:0.0]\\",\\"success\\",\\"success\\"],
+      "[\\"[01/01/1970 01:00:00]\\",\\"debug\\",\\"debug\\"],
+      [\\"[01/01/1970 01:00:00]\\",\\"log\\",\\"log\\"],
+      [\\"[01/01/1970 01:00:00]\\",\\"log\\",\\"log\\"],
+      [\\"[01/01/1970 01:00:00]\\",\\"info\\",\\"info\\"],
+      [\\"[01/01/1970 01:00:00]\\",\\"warning\\",\\"warning\\"],
+      [\\"[01/01/1970 01:00:00]\\",\\"error\\",\\"error\\"],
+      [\\"[01/01/1970 01:00:00]\\",\\"success\\",\\"success\\"],
       "
     `)
     await remove(fname)
   })
 
   it('timestamp', async () => {
-    expect(logger.timestamp(0)).toMatchInlineSnapshot(`"[70-1-1 1:0:0.0]"`)
+    expect(logger.timestamp(0)).toMatchInlineSnapshot(`"[01/01/1970 01:00:00]"`)
   })
 })

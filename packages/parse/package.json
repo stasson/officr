@@ -1,7 +1,7 @@
 {
-  "name": "@officr/cli",
+  "name": "@officr/parse",
   "version": "2.1.1",
-  "description": "lightweight cli runner",
+  "description": "lightweight arg parser",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/stasson/officr.git"
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/stasson/officr#readme",
   "keywords": [
     "officr",
-    "cli"
+    "parse"
   ],
   "author": "stasson",
   "license": "MIT",
@@ -27,6 +27,9 @@
   },
   "dependencies": {
     "@officr/logger": "^2.1.1",
-    "v8-compile-cache": "^2.3.0"
+    "lodash.camelcase": "^4.3.0",
+    "lodash.kebabcase": "^4.1.1",
+    "lodash.uniq": "^4.5.0",
+    "mri": "^1.2.0"
   }
 }

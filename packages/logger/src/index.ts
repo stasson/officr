@@ -104,7 +104,7 @@ export interface ILogConfig {
   /** whether to add timestamp
    * @default false
    */
-  timestamp?: boolean
+  timestamp?: boolean | 'time' | 'datetime' | 'iso'
 }
 
 const logConfigDefaults: ILogConfig = {
@@ -137,15 +137,29 @@ function stats() {
 }
 
 function formattime(timestamp: number) {
-  const d = new Date(timestamp)
-  const Y = d.getFullYear() % 100
-  const M = d.getMonth() + 1
-  const D = d.getDate()
-  const h = d.getHours()
-  const m = d.getMinutes()
-  const s = d.getSeconds().toPrecision(2)
-
-  return `[${Y}-${M}-${D} ${h}:${m}:${s}]`
+  if (logConfig.timestamp == 'time') {
+    const d = new Date(timestamp)
+    return `[${d.toLocaleTimeString([], {
+      hour12: false,
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    })}.${d.getMilliseconds().toString().padEnd(3, '0')}]`
+  } else if (logConfig.timestamp == 'iso') {
+    return `[${new Date(timestamp).toISOString()}]`
+  } else {
+    return `[${new Date(timestamp)
+      .toLocaleString([], {
+        hour12: false,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      })
+      .replace(', ', ' ')}]`
+  }
 }
 
 function formatlog(data: ILogData) {
