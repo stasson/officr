@@ -19,6 +19,7 @@
   "main": "index.js",
   "types": "dist/index.d.ts",
   "files": [
+    "index.js",
     "dist"
   ],
   "engines": {
