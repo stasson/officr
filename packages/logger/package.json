@@ -9,7 +9,7 @@
   "bugs": {
     "url": "https://github.com/stasson/officr/issues"
   },
-  "homepage": "https://github.com/stasson/officr#readme",
+  "homepage": "https://github.com/stasson/officr/blob/main/packages/logger/README.md",
   "keywords": [
     "officr",
     "logger"
